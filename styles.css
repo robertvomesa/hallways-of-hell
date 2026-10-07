@@ -14,3 +14,4 @@
 @media(max-width:800px){.gallery-slide.landscape{flex-basis:84vw;width:84vw}.gallery-slide.portrait{flex-basis:65vw;width:65vw;min-width:230px}.gallery-slide.landscape .film-frame{height:auto;aspect-ratio:3/2}.gallery-slide.portrait .film-frame{height:auto;aspect-ratio:2/3}}
 .hero-countdown{display:flex;align-items:center;gap:14px;margin:0 0 25px;color:#f1eae1}.countdown-number{font:800 32px/.9 var(--condensed);color:var(--orange);text-shadow:0 0 20px #f02a1850}.countdown-label{font:10px var(--mono);letter-spacing:.16em;color:#c8c0b7}.hero-countdown+.button{margin-bottom:8px}
 @media(max-width:600px){.hero-countdown{margin-bottom:20px}.countdown-number{font-size:28px}.countdown-label{font-size:9px;letter-spacing:.12em}}
+.date-number{display:flex;gap:.12em;align-items:baseline}
