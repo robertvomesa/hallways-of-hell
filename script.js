@@ -43,7 +43,7 @@ if (countdownDays && countdownLabel) {
       countdownLabel.textContent = 'OCTOBER 30 — OPENING NIGHT';
     } else {
       countdownDays.textContent = String(daysRemaining).padStart(2, '0');
-      countdownLabel.textContent = 'DAYS UNTIL OCTOBER 30';
+      countdownLabel.textContent = 'DAYS UNTIL OPENING NIGHT';
     }
   };
 
