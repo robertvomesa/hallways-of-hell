@@ -16,6 +16,37 @@ navigation.querySelectorAll('a').forEach((link) => {
   });
 });
 
+const countdownDays = document.querySelector('#countdown-days');
+const countdownLabel = document.querySelector('#countdown-label');
+
+if (countdownDays && countdownLabel) {
+  const updateCountdown = () => {
+    const mesaDate = new Intl.DateTimeFormat('en-US', {
+      timeZone: 'America/Phoenix', year: 'numeric', month: 'numeric', day: 'numeric'
+    }).formatToParts(new Date()).reduce((date, part) => {
+      if (part.type !== 'literal') date[part.type] = Number(part.value);
+      return date;
+    }, {});
+    const today = Date.UTC(mesaDate.year, mesaDate.month - 1, mesaDate.day);
+    const openingNight = Date.UTC(2026, 9, 30);
+    const daysRemaining = Math.round((openingNight - today) / 86400000);
+
+    if (daysRemaining < 0) {
+      countdownDays.textContent = '—';
+      countdownLabel.textContent = 'THE 2026 DATES HAVE PASSED';
+    } else if (daysRemaining === 0) {
+      countdownDays.textContent = '0';
+      countdownLabel.textContent = 'OCTOBER 30 — OPENING NIGHT';
+    } else {
+      countdownDays.textContent = String(daysRemaining).padStart(2, '0');
+      countdownLabel.textContent = 'DAYS UNTIL OCTOBER 30';
+    }
+  };
+
+  updateCountdown();
+  window.setInterval(updateCountdown, 60 * 60 * 1000);
+}
+
 const galleryTrack = document.querySelector('#gallery-track');
 const galleryCurrent = document.querySelector('#gallery-current');
 
