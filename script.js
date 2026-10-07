@@ -29,11 +29,15 @@ if (countdownDays && countdownLabel) {
     }, {});
     const today = Date.UTC(mesaDate.year, mesaDate.month - 1, mesaDate.day);
     const openingNight = Date.UTC(2026, 9, 30);
+    const finalNight = Date.UTC(2026, 9, 31);
     const daysRemaining = Math.round((openingNight - today) / 86400000);
 
-    if (daysRemaining < 0) {
+    if (today > finalNight) {
       countdownDays.textContent = '—';
       countdownLabel.textContent = 'THE 2026 DATES HAVE PASSED';
+    } else if (today === finalNight) {
+      countdownDays.textContent = '0';
+      countdownLabel.textContent = 'FINAL NIGHT — OCTOBER 31';
     } else if (daysRemaining === 0) {
       countdownDays.textContent = '0';
       countdownLabel.textContent = 'OCTOBER 30 — OPENING NIGHT';
