@@ -1,0 +1,21 @@
+.event-leaf-page{min-height:100vh;background:radial-gradient(ellipse at 82% 35%,#52181244,transparent 45%),var(--black)}
+.event-topbar{position:relative}
+.event-topbar>.nav-ticket{color:#100d0b;background:var(--white);text-decoration:none;padding:15px 22px;font:10px var(--mono);letter-spacing:.1em;text-transform:uppercase}
+.event-leaf{max-width:1240px;min-height:calc(100vh - 88px);margin:auto;padding:52px 6vw 28px;display:flex;flex-direction:column}
+.event-leaf>.section-mark{font:9px var(--mono);letter-spacing:.16em;color:var(--red);margin:0 0 38px}
+.event-leaf>.section-mark span{color:#b0a69c;margin-right:12px}
+.event-leaf-grid{display:grid;grid-template-columns:1fr .9fr;gap:6vw;align-items:center;flex:1}
+.event-leaf-copy{position:relative;z-index:1}
+.event-leaf-copy .eyebrow{font:10px var(--mono);letter-spacing:.18em;margin:0 0 22px}
+.event-leaf-copy h1{font:900 clamp(68px,10vw,136px)/.77 var(--condensed);letter-spacing:-.035em;text-transform:uppercase;margin:0 0 34px}
+.event-leaf-copy h1 em{font-style:normal;color:var(--red)}
+.event-date{font:600 clamp(18px,2.2vw,25px)/1.4 var(--sans);margin:0 0 8px}
+.night-time{font-size:15px;margin:0 0 23px;color:#f5a077}
+.event-leaf-copy address{font:500 15px/1.65 var(--sans);font-style:normal;color:#c8c0b7;margin:22px 0 29px}
+.event-leaf-copy .button-red{display:inline-flex;align-items:center;gap:24px;min-width:190px;padding:18px 23px;background:var(--red);color:white;text-decoration:none;font:600 10px var(--mono);letter-spacing:.12em;text-transform:uppercase}
+.event-leaf-copy .button-red:hover{background:#ff482f}
+.event-leaf-art{min-height:460px;background:linear-gradient(0deg,#09090955,#09090916),url('../hero-bg.jpg') center/cover no-repeat;border:1px solid #ffffff24;box-shadow:20px 20px 0 #f02a1815}
+.event-leaf-footer{display:flex;justify-content:space-between;gap:20px;border-top:1px solid #ffffff28;padding-top:17px;margin-top:40px;font:9px var(--mono);letter-spacing:.12em;color:#9a9189;text-transform:uppercase}
+.event-leaf-footer a{color:#d9d1c9;text-decoration:none}
+.event-leaf-footer a:hover{color:var(--orange)}
+@media(max-width:760px){.event-topbar{padding-left:22px;padding-right:22px}.event-topbar .brand img{width:170px}.event-topbar>.nav-ticket{padding:13px 14px;font-size:8px}.event-leaf{padding:42px 24px 24px}.event-leaf-grid{grid-template-columns:1fr;gap:34px}.event-leaf-copy h1{font-size:clamp(66px,15vw,105px)}.event-leaf-art{min-height:270px;order:-1;background-position:center 55%}.event-leaf-footer{margin-top:30px;flex-direction:column;line-height:1.7}}

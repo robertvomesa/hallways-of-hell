@@ -16,6 +16,9 @@
 @media(max-width:600px){.hero-countdown{margin-bottom:20px;gap:10px}.countdown-unit{min-width:36px}.countdown-number{font-size:27px}.countdown-unit-label{font-size:7px}.countdown-label{font-size:8px;letter-spacing:.08em}}
 .date-number{display:flex;gap:0;align-items:baseline}
 .date-card-alt .date-number{gap:.025em}
+.event-card-link{display:inline-flex;gap:10px;align-items:center;margin-top:12px;color:#d7cfc7;text-decoration:none;font:9px var(--mono);letter-spacing:.1em;text-transform:uppercase;border-bottom:1px solid #ffffff45;padding-bottom:5px}
+.event-card-link span{color:var(--orange)}
+.event-card-link:hover,.event-card-link:focus-visible{color:#fff;border-color:var(--orange)}
 @keyframes reality-flicker{0%{opacity:0;filter:brightness(.35);text-shadow:none}9%{opacity:1;filter:brightness(1.35)}14%{opacity:.35}20%{opacity:1;filter:brightness(1.15)}33%{opacity:.65}39%{opacity:1}55%{opacity:.8}61%{opacity:.25;text-shadow:0 0 8px #f5392470}69%{opacity:1;filter:brightness(1.2)}100%{opacity:1;filter:none}}
 .hero h1 em{animation:reality-flicker 1.35s ease-out both}
 @media(prefers-reduced-motion:reduce){.hero h1 em{animation:none}}
