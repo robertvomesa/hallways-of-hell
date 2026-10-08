@@ -16,39 +16,54 @@ navigation.querySelectorAll('a').forEach((link) => {
   });
 });
 
-const countdownDays = document.querySelector('#countdown-days');
-const countdownLabel = document.querySelector('#countdown-label');
+const countdown = document.querySelector('.hero-countdown');
 
-if (countdownDays && countdownLabel) {
+if (countdown) {
+  const countdownParts = {
+    days: document.querySelector('#countdown-days'),
+    hours: document.querySelector('#countdown-hours'),
+    minutes: document.querySelector('#countdown-minutes'),
+    seconds: document.querySelector('#countdown-seconds')
+  };
+  const countdownLabel = document.querySelector('#countdown-label');
   const updateCountdown = () => {
     const mesaDate = new Intl.DateTimeFormat('en-US', {
-      timeZone: 'America/Phoenix', year: 'numeric', month: 'numeric', day: 'numeric'
+      timeZone: 'America/Phoenix', year: 'numeric', month: 'numeric', day: 'numeric',
+      hour: 'numeric', minute: 'numeric', second: 'numeric', hourCycle: 'h23'
     }).formatToParts(new Date()).reduce((date, part) => {
       if (part.type !== 'literal') date[part.type] = Number(part.value);
       return date;
     }, {});
     const today = Date.UTC(mesaDate.year, mesaDate.month - 1, mesaDate.day);
-    const openingNight = Date.UTC(2026, 9, 30);
+    const mesaNow = Date.UTC(mesaDate.year, mesaDate.month - 1, mesaDate.day, mesaDate.hour, mesaDate.minute, mesaDate.second);
+    const openingNight = Date.UTC(2026, 9, 30, 19);
     const finalNight = Date.UTC(2026, 9, 31);
-    const daysRemaining = Math.round((openingNight - today) / 86400000);
+    const secondsLeft = Math.max(0, Math.ceil((openingNight - mesaNow) / 1000));
 
     if (today > finalNight) {
-      countdownDays.textContent = '—';
+      Object.values(countdownParts).forEach((part) => { part.textContent = '00'; });
       countdownLabel.textContent = 'THE 2026 DATES HAVE PASSED';
     } else if (today === finalNight) {
-      countdownDays.textContent = '0';
+      Object.values(countdownParts).forEach((part) => { part.textContent = '00'; });
       countdownLabel.textContent = 'FINAL NIGHT — OCTOBER 31';
-    } else if (daysRemaining === 0) {
-      countdownDays.textContent = '0';
+    } else if (today === Date.UTC(2026, 9, 30) && mesaNow >= openingNight) {
+      Object.values(countdownParts).forEach((part) => { part.textContent = '00'; });
       countdownLabel.textContent = 'OCTOBER 30 — OPENING NIGHT';
     } else {
-      countdownDays.textContent = String(daysRemaining).padStart(2, '0');
-      countdownLabel.textContent = 'DAYS UNTIL OPENING NIGHT';
+      const days = Math.floor(secondsLeft / 86400);
+      const hours = Math.floor((secondsLeft % 86400) / 3600);
+      const minutes = Math.floor((secondsLeft % 3600) / 60);
+      const seconds = secondsLeft % 60;
+      countdownParts.days.textContent = String(days).padStart(2, '0');
+      countdownParts.hours.textContent = String(hours).padStart(2, '0');
+      countdownParts.minutes.textContent = String(minutes).padStart(2, '0');
+      countdownParts.seconds.textContent = String(seconds).padStart(2, '0');
+      countdownLabel.textContent = 'UNTIL OPENING NIGHT';
     }
   };
 
   updateCountdown();
-  window.setInterval(updateCountdown, 60 * 60 * 1000);
+  window.setInterval(updateCountdown, 1000);
 }
 
 const galleryTrack = document.querySelector('#gallery-track');
