@@ -77,7 +77,6 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--orange);outline-off
 .signup-embed-wrap{max-width:720px}
 .signup-embed-intro{margin:0 0 18px;color:#e2dad1;font-size:14px;line-height:1.7}
 .signup-frame-inline{height:1080px;border:1px solid #ffffff2c;background:#0d0c0b}
-.signup-popup-trigger{margin-top:20px}
 .signup-dialog{position:relative;width:min(680px,calc(100% - 28px));max-width:none;max-height:92vh;overflow:auto;padding:0;border:0;background:transparent;color:var(--white);box-shadow:none}
 .signup-dialog::backdrop{background:#000c;backdrop-filter:blur(5px)}
 .signup-dialog-close{position:absolute;z-index:2;top:8px;right:8px;width:40px;height:40px;border:1px solid #ffffff55;background:#090807e8;color:#fff;font-size:26px;line-height:1;cursor:pointer}
