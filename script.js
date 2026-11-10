@@ -1,70 +1,72 @@
 const menuButton = document.querySelector('.menu-toggle');
 const navigation = document.querySelector('#main-nav');
 
-menuButton.addEventListener('click', () => {
-  const isOpen = menuButton.getAttribute('aria-expanded') === 'true';
-  menuButton.setAttribute('aria-expanded', String(!isOpen));
-  menuButton.setAttribute('aria-label', isOpen ? 'Open navigation' : 'Close navigation');
-  navigation.classList.toggle('open', !isOpen);
-});
-
-navigation.querySelectorAll('a').forEach((link) => {
-  link.addEventListener('click', () => {
-    menuButton.setAttribute('aria-expanded', 'false');
-    menuButton.setAttribute('aria-label', 'Open navigation');
-    navigation.classList.remove('open');
+if (menuButton && navigation) {
+  menuButton.addEventListener('click', () => {
+    const isOpen = menuButton.getAttribute('aria-expanded') === 'true';
+    menuButton.setAttribute('aria-expanded', String(!isOpen));
+    menuButton.setAttribute('aria-label', isOpen ? 'Open navigation' : 'Close navigation');
+    navigation.classList.toggle('open', !isOpen);
   });
+
+  navigation.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => {
+      menuButton.setAttribute('aria-expanded', 'false');
+      menuButton.setAttribute('aria-label', 'Open navigation');
+      navigation.classList.remove('open');
+    });
+  });
+}
+
+const signupDialog = document.querySelector('#signup-dialog');
+if (signupDialog) {
+  document.querySelectorAll('[data-open-signup]').forEach((trigger) => {
+    trigger.addEventListener('click', (event) => {
+      if (typeof signupDialog.showModal !== 'function') return;
+      event.preventDefault();
+      signupDialog.showModal();
+      signupDialog.querySelector('[data-close-signup]')?.focus();
+    });
+  });
+
+  signupDialog.querySelector('[data-close-signup]')?.addEventListener('click', () => signupDialog.close());
+  signupDialog.addEventListener('click', (event) => {
+    if (event.target === signupDialog) signupDialog.close();
+  });
+}
+
+// Tracking stays dormant until a GA4 tag is configured. Never pass form values or other PII.
+const track = (eventName) => {
+  if (typeof window.gtag === 'function') window.gtag('event', eventName);
+};
+
+document.addEventListener('click', (event) => {
+  const target = event.target.closest('[data-analytics]');
+  if (!target) return;
+  const eventName = target.dataset.analytics;
+  if (['ticket_click', 'social_click'].includes(eventName)) track(eventName);
 });
 
-const countdown = document.querySelector('.hero-countdown');
+if (document.body.dataset.page === 'event-details') track('event_details_view');
 
-if (countdown) {
-  const countdownParts = {
-    days: document.querySelector('#countdown-days'),
-    hours: document.querySelector('#countdown-hours'),
-    minutes: document.querySelector('#countdown-minutes'),
-    seconds: document.querySelector('#countdown-seconds')
-  };
-  const countdownLabel = document.querySelector('#countdown-label');
-  const updateCountdown = () => {
-    const mesaDate = new Intl.DateTimeFormat('en-US', {
-      timeZone: 'America/Phoenix', year: 'numeric', month: 'numeric', day: 'numeric',
-      hour: 'numeric', minute: 'numeric', second: 'numeric', hourCycle: 'h23'
-    }).formatToParts(new Date()).reduce((date, part) => {
-      if (part.type !== 'literal') date[part.type] = Number(part.value);
-      return date;
-    }, {});
-    const today = Date.UTC(mesaDate.year, mesaDate.month - 1, mesaDate.day);
-    const mesaNow = Date.UTC(mesaDate.year, mesaDate.month - 1, mesaDate.day, mesaDate.hour, mesaDate.minute, mesaDate.second);
-    const openingNight = Date.UTC(2026, 9, 30, 19);
-    const finalNight = Date.UTC(2026, 9, 31);
-    const secondsLeft = Math.max(0, Math.ceil((openingNight - mesaNow) / 1000));
-
-    if (today > finalNight) {
-      Object.values(countdownParts).forEach((part) => { part.textContent = '00'; });
-      countdownLabel.textContent = 'THE 2026 DATES HAVE PASSED';
-    } else if (today === finalNight) {
-      Object.values(countdownParts).forEach((part) => { part.textContent = '00'; });
-      countdownLabel.textContent = 'FINAL NIGHT — OCTOBER 31';
-    } else if (today === Date.UTC(2026, 9, 30) && mesaNow >= openingNight) {
-      Object.values(countdownParts).forEach((part) => { part.textContent = '00'; });
-      countdownLabel.textContent = 'OCTOBER 30 — OPENING NIGHT';
-    } else {
-      const days = Math.floor(secondsLeft / 86400);
-      const hours = Math.floor((secondsLeft % 86400) / 3600);
-      const minutes = Math.floor((secondsLeft % 3600) / 60);
-      const seconds = secondsLeft % 60;
-      countdownParts.days.textContent = String(days).padStart(2, '0');
-      countdownParts.hours.textContent = String(hours).padStart(2, '0');
-      countdownParts.minutes.textContent = String(minutes).padStart(2, '0');
-      countdownParts.seconds.textContent = String(seconds).padStart(2, '0');
-      countdownLabel.textContent = 'UNTIL OPENING NIGHT';
+const gallerySection = document.querySelector('[data-analytics-view="gallery_view"]');
+if (gallerySection && 'IntersectionObserver' in window) {
+  const galleryObserver = new IntersectionObserver((entries) => {
+    if (entries.some((entry) => entry.isIntersecting)) {
+      track('gallery_view');
+      galleryObserver.disconnect();
     }
-  };
-
-  updateCountdown();
-  window.setInterval(updateCountdown, 1000);
+  }, { threshold: 0.35 });
+  galleryObserver.observe(gallerySection);
 }
+
+// The future form integration should call this only after successful provider confirmation.
+// Accepted values are channel names only; email addresses and phone numbers are never included.
+window.hohSignupSucceeded = (channels) => {
+  if (!Array.isArray(channels)) return;
+  if (channels.includes('email')) track('email_signup');
+  if (channels.includes('sms')) track('sms_signup');
+};
 
 const galleryTrack = document.querySelector('#gallery-track');
 const galleryCurrent = document.querySelector('#gallery-current');
@@ -132,7 +134,6 @@ if (galleryTrack && galleryCurrent) {
   const endGalleryDrag = (event) => {
     if (galleryTrack.hasPointerCapture(event.pointerId)) galleryTrack.releasePointerCapture(event.pointerId);
     galleryTrack.classList.remove('is-dragging');
-    if (dragged) galleryTrack.scrollTo({ left: galleryTrack.scrollLeft, behavior: 'smooth' });
   };
 
   galleryTrack.addEventListener('pointerup', endGalleryDrag);

@@ -2,14 +2,22 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://hallwaysofhell.com/</loc>
-    <lastmod>2026-10-08</lastmod>
+    <lastmod>2026-11-01</lastmod>
   </url>
   <url>
     <loc>https://hallwaysofhell.com/events/2026-10-30/</loc>
-    <lastmod>2026-10-08</lastmod>
+    <lastmod>2026-11-01</lastmod>
   </url>
   <url>
     <loc>https://hallwaysofhell.com/events/2026-10-31/</loc>
-    <lastmod>2026-10-08</lastmod>
+    <lastmod>2026-11-01</lastmod>
+  </url>
+  <url>
+    <loc>https://hallwaysofhell.com/privacy.html</loc>
+    <lastmod>2026-11-01</lastmod>
+  </url>
+  <url>
+    <loc>https://hallwaysofhell.com/terms.html</loc>
+    <lastmod>2026-11-01</lastmod>
   </url>
 </urlset>
