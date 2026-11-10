@@ -1,16 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://hallwaysofhell.com/</loc>
-    <lastmod>2026-11-01</lastmod>
+    <lastmod>2026-11-10</lastmod>
+    <image:image><image:loc>https://hallwaysofhell.com/hero-bg.jpg</image:loc></image:image>
+    <image:image><image:loc>https://hallwaysofhell.com/assets/hes-waiting.jpg</image:loc></image:image>
+    <image:image><image:loc>https://hallwaysofhell.com/assets/gallery/IMG_0252.jpg</image:loc></image:image>
+    <image:image><image:loc>https://hallwaysofhell.com/assets/gallery/IMG_6688.jpg</image:loc></image:image>
+    <image:image><image:loc>https://hallwaysofhell.com/assets/gallery/IMG_0133.jpg</image:loc></image:image>
+    <image:image><image:loc>https://hallwaysofhell.com/assets/gallery/IMG_6682.jpg</image:loc></image:image>
+    <image:image><image:loc>https://hallwaysofhell.com/assets/gallery/IMG_0082.jpg</image:loc></image:image>
+    <image:image><image:loc>https://hallwaysofhell.com/assets/gallery/IMG_0172.jpg</image:loc></image:image>
+    <image:image><image:loc>https://hallwaysofhell.com/assets/gallery/IMG_0051.jpg</image:loc></image:image>
+    <image:image><image:loc>https://hallwaysofhell.com/assets/gallery/IMG_0083.jpg</image:loc></image:image>
+    <image:image><image:loc>https://hallwaysofhell.com/assets/gallery/IMG_6695.jpg</image:loc></image:image>
   </url>
   <url>
     <loc>https://hallwaysofhell.com/events/2026-10-30/</loc>
-    <lastmod>2026-11-01</lastmod>
+    <lastmod>2026-11-10</lastmod>
   </url>
   <url>
     <loc>https://hallwaysofhell.com/events/2026-10-31/</loc>
-    <lastmod>2026-11-01</lastmod>
+    <lastmod>2026-11-10</lastmod>
   </url>
   <url>
     <loc>https://hallwaysofhell.com/privacy.html</loc>
