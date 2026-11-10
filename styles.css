@@ -81,7 +81,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--orange);outline-off
 .signup-dialog::backdrop{background:#000c;backdrop-filter:blur(5px)}
 .signup-dialog-head{display:flex;justify-content:flex-end;align-items:flex-start;margin-bottom:0}
 .signup-dialog-close{flex:0 0 42px;width:42px;height:42px;border:1px solid #ffffff50;background:#ffffff0c;color:#fff;font-size:27px;line-height:1;cursor:pointer}
-.signup-frame{display:block;width:100%;height:min(760px,70vh);min-height:500px;border:0;background:transparent}
+.signup-frame{display:block;width:100%;height:1120px;min-height:0;border:0;background:transparent}
 .signup-fallback{margin:10px 0;color:#aaa098;font-size:12px;line-height:1.6}
 .signup-fallback a{color:#ff9a63;text-underline-offset:3px}
 .signup-intro{margin:0 0 24px;color:#e2dad1;font-size:14px;line-height:1.65}
@@ -107,4 +107,5 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--orange);outline-off
 .policy-content .policy-updated{font:10px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:#9b9188}
 .policy-content .text-link{margin-top:25px}
 @media(max-width:800px){.updates-layout{grid-template-columns:1fr;gap:40px}.updates-copy h2{font-size:clamp(68px,14vw,100px)}.archive-promo{gap:24px}.policy-content{padding:68px 24px 82px}}
-@media(max-width:430px){.signup-launcher{padding:20px 16px}.signup-dialog{padding:18px 14px}.signup-frame{height:66vh;min-height:440px}.archive-promo .teaser-image{min-height:0}.archive-band{align-items:flex-start}.archive-band .button{align-self:flex-start}.policy-content h1{font-size:19vw}}
+@media(max-width:600px){.signup-frame{height:1550px}}
+@media(max-width:430px){.signup-launcher{padding:20px 16px}.signup-dialog{padding:18px 14px}.archive-promo .teaser-image{min-height:0}.archive-band{align-items:flex-start}.archive-band .button{align-self:flex-start}.policy-content h1{font-size:19vw}}
