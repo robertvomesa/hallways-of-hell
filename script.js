@@ -20,12 +20,33 @@ if (menuButton && navigation) {
 
 const signupDialog = document.querySelector('#signup-dialog');
 if (signupDialog) {
+  const signupPopupSeenKey = 'hohSignupPopupSeen2027';
+  const hasSeenSignupPopup = () => {
+    try {
+      return window.localStorage.getItem(signupPopupSeenKey) === 'true';
+    } catch {
+      return false;
+    }
+  };
+  const rememberSignupPopup = () => {
+    try {
+      window.localStorage.setItem(signupPopupSeenKey, 'true');
+    } catch {
+      // Keep the signup available when browser storage is disabled.
+    }
+  };
+  const openSignupPopup = () => {
+    if (typeof signupDialog.showModal !== 'function' || signupDialog.open) return false;
+    rememberSignupPopup();
+    signupDialog.showModal();
+    signupDialog.querySelector('[data-close-signup]')?.focus();
+    return true;
+  };
+
   document.querySelectorAll('[data-open-signup]').forEach((trigger) => {
     trigger.addEventListener('click', (event) => {
-      if (typeof signupDialog.showModal !== 'function') return;
       event.preventDefault();
-      signupDialog.showModal();
-      signupDialog.querySelector('[data-close-signup]')?.focus();
+      openSignupPopup();
     });
   });
 
@@ -33,6 +54,12 @@ if (signupDialog) {
   signupDialog.addEventListener('click', (event) => {
     if (event.target === signupDialog) signupDialog.close();
   });
+
+  if (!hasSeenSignupPopup() && typeof signupDialog.showModal === 'function') {
+    window.setTimeout(() => {
+      if (!document.hidden) openSignupPopup();
+    }, 1600);
+  }
 }
 
 // Tracking stays dormant until a GA4 tag is configured. Never pass form values or other PII.
