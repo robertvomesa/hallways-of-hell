@@ -74,9 +74,10 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--orange);outline-off
 .updates-copy h2{font:700 clamp(62px,8vw,104px)/.84 var(--condensed);text-transform:uppercase;letter-spacing:-.025em;margin:18px 0 25px}
 .updates-copy>p:not(.eyebrow){max-width:450px;color:#c6beb5;font-size:14px;line-height:1.8}
 .updates-organizer{font:10px var(--mono);letter-spacing:.06em;color:#a59b91!important}
-.signup-launcher{max-width:650px;padding:28px;border:1px solid #ffffff2c;background:#ffffff08}
-.signup-launcher>p:first-child{margin:0 0 23px;color:#e2dad1;font-size:15px;line-height:1.7}
-.signup-launcher .signup-privacy-note{margin-top:22px}
+.signup-embed-wrap{max-width:720px}
+.signup-embed-intro{margin:0 0 18px;color:#e2dad1;font-size:14px;line-height:1.7}
+.signup-frame-inline{height:1080px;border:1px solid #ffffff2c;background:#0d0c0b}
+.signup-popup-trigger{margin-top:20px}
 .signup-dialog{position:relative;width:min(680px,calc(100% - 28px));max-width:none;max-height:92vh;overflow:auto;padding:0;border:0;background:transparent;color:var(--white);box-shadow:none}
 .signup-dialog::backdrop{background:#000c;backdrop-filter:blur(5px)}
 .signup-dialog-close{position:absolute;z-index:2;top:8px;right:8px;width:40px;height:40px;border:1px solid #ffffff55;background:#090807e8;color:#fff;font-size:26px;line-height:1;cursor:pointer}
@@ -104,8 +105,9 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--orange);outline-off
 .policy-content .policy-updated{font:10px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:#9b9188}
 .policy-content .text-link{margin-top:25px}
 @media(max-width:800px){.updates-layout{grid-template-columns:1fr;gap:40px}.updates-copy h2{font-size:clamp(68px,14vw,100px)}.archive-promo{gap:24px}.policy-content{padding:68px 24px 82px}}
-@media(max-width:600px){.signup-frame{height:1000px}}
-@media(max-width:430px){.signup-launcher{padding:20px 16px}.archive-promo .teaser-image{min-height:0}.archive-band{align-items:flex-start}.archive-band .button{align-self:flex-start}.policy-content h1{font-size:19vw}}
+@media(max-width:800px){.signup-frame-inline{height:1120px}}
+@media(max-width:600px){.signup-frame:not(.signup-frame-inline){height:1000px}.signup-frame-inline{height:1240px}}
+@media(max-width:430px){.archive-promo .teaser-image{min-height:0}.archive-band{align-items:flex-start}.archive-band .button{align-self:flex-start}.policy-content h1{font-size:19vw}}
 /* SEO: keyword H1 shown as the hero kicker; display headline styled as before */
 .hero h1.hero-kicker{font:500 10px/1.6 var(--mono);letter-spacing:.2em;text-transform:uppercase;color:#c9c2ba;margin:0;text-shadow:none}
 .hero .hero-title{font:800 clamp(72px,8.5vw,126px)/.78 var(--condensed);text-transform:uppercase;letter-spacing:-.04em;margin:34px 0 30px;text-shadow:0 4px 40px #000}
